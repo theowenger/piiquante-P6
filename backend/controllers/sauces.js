@@ -47,11 +47,11 @@ exports.modifySauce = async (req, res, next) => {
     }
     if (req.file) {
         const filename = sauce.imageUrl.split('/images/')[1];
-        fs.unlink(`images/${filename}`, () => {});
+        fs.unlink(`images/${filename}`, () => { });
     }
     Sauce.updateOne({ _id: req.params.id }, { ...sauceObject, _id: req.params.id })
-    .then(() => res.status(200).json({ message: 'Sauce modifiée!' }))
-    .catch(error => res.status(401).json({ error }));
+        .then(() => res.status(200).json({ message: 'Sauce modifiée!' }))
+        .catch(error => res.status(401).json({ error }));
 };
 
 exports.deleteSauce = (req, res, next) => {
@@ -112,7 +112,7 @@ exports.likeSauce = (req, res) => {
                     const index = sauce.usersLiked.findIndex(a => a == userId)
 
                     sauce.usersLiked.splice(index, 1)
-    
+
                     sauce.save().then(saved => {
                         res.status(200).json({ message: 'Like enlevé !' })
                     }).catch(e => {
@@ -127,7 +127,7 @@ exports.likeSauce = (req, res) => {
                     const index = sauce.usersDisliked.findIndex(a => a == userId)
 
                     sauce.usersDisliked.splice(index, 1)
-    
+
                     sauce.save().then(saved => {
                         res.status(200).json({ message: 'dislike enlevé!' })
                     }).catch(e => {
